@@ -1,8 +1,8 @@
-# CKEditor 5 FullScreen Editor Plugin
+# CKEditor 5 FullScreen Plugin
 
 Maximize your CKEditor 5 editing space with the FullScreen plugin. Offering a seamless way to expand the editor to full screen, it ensures an uninterrupted and expansive writing canvas.
 
-![Fullscreen Editor Plugin Screenshot](screenshot.png)
+![Fullscreen Plugin Screenshot](screenshot.png)
 
 ## Support the Author
 
