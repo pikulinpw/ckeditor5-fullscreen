@@ -1,6 +1,7 @@
 # CKEditor 5 FullScreen Plugin
 
 Maximize your CKEditor 5 editing space with the FullScreen plugin. Offering a seamless way to expand the editor to full screen, it ensures an uninterrupted and expansive writing canvas.
+This plugin is compatible with various browsers including Chrome, Firefox, Safari, Edge, and Internet Explorer, among others. It provides support for both the latest and older versions of these browsers. It's also optimized for devices like iPhones, iPads, Android devices, and desktop computers.
 
 ![Fullscreen Plugin Screenshot](screenshot.png)
 

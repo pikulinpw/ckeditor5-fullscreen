@@ -3,6 +3,41 @@
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
 
+const pikulinpw_ckeditor5_fullscreen = {
+    'getFullscreenElement': (element) => {
+        return element.classList.contains('fullscreen-style-activated') ||
+            document.fullscreenElement ||
+            document.webkitFullscreenElement ||
+            document.mozFullScreenElement ||
+            document.msFullscreenElement;
+    },
+    'requestFullscreen': (element) => {
+        const method = element.requestFullscreen ||
+            element.webkitEnterFullScreen ||
+            element.webkitRequestFullscreen ||
+            element.webkitRequestFullScreen ||
+            element.mozRequestFullScreen ||
+            element.msRequestFullscreen;
+        if (method) {
+            method.call(element);
+        } else {
+            element.classList.add('fullscreen-style-activated');
+        }
+    },
+    'exitFullscreen': (element) => {
+        const method = document.exitFullscreen ||
+            document.webkitExitFullScreen ||
+            document.webkitExitFullscreen ||
+            document.mozCancelFullScreen ||
+            document.msExitFullscreen;
+        if (method) {
+            method.call(document);
+        } else if (element.classList.contains('fullscreen-style-activated')) {
+            element.classList.remove('fullscreen-style-activated');
+        }
+    }
+};
+
 export default class FullScreen extends Plugin {
     init() {
         const editor = this.editor,
@@ -11,7 +46,22 @@ export default class FullScreen extends Plugin {
             css = `
                 .ck.fullscreen-mode .ck.ck-content.ck-editor__editable,
                 .ck.fullscreen-mode .ck.ck-editor__main {
-                    height: 100%;
+                    height: 100% !important;
+                    resize: none !important;
+                }
+                .ck.ck-editor.fullscreen-mode {
+                    display: flex;
+                    flex-direction: column;
+                }
+                .ck.ck-editor.fullscreen-style-activated {
+                    position: fixed;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    z-index: 99999;
+                    width: 100vw;
+                    height: 100vh;
                 }
         `;
 
@@ -28,15 +78,15 @@ export default class FullScreen extends Plugin {
             view.on('execute', () => {
                 const editorElement = editor.ui.view.element;
 
-                if (document.fullscreenElement) {
-                    document.exitFullscreen();
+                if (pikulinpw_ckeditor5_fullscreen.getFullscreenElement(editorElement)) {
+                    pikulinpw_ckeditor5_fullscreen.exitFullscreen(editorElement);
                     editorElement.classList.remove('fullscreen-mode');
                     view.set({
                         label: 'Full Screen',
                         icon: fullScreenIcon
                     });
                 } else {
-                    editorElement.requestFullscreen();
+                    pikulinpw_ckeditor5_fullscreen.requestFullscreen(editorElement);
                     editorElement.classList.add('fullscreen-mode');
                     view.set({
                         label: 'Exit Full Screen',
@@ -49,12 +99,11 @@ export default class FullScreen extends Plugin {
             return view;
         });
 
-        const head = document.head || document.getElementsByTagName('head')[0];
-        const style = document.createElement('style');
+        const head = document.head || document.getElementsByTagName('head')[0],
+            style = document.createElement('style');
 
         style.type = 'text/css';
         if (style.styleSheet){
-            // это для IE
             style.styleSheet.cssText = css;
         } else {
             style.appendChild(document.createTextNode(css));
