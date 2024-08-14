@@ -13,7 +13,17 @@ If you find this plugin useful, consider supporting the author to create and mai
 
 ## Prerequisites
 
-Before you begin, ensure you have the following dependencies installed:
+For version 2.0.0 and above, the FullScreen plugin requires `ckeditor5` as a dependency.
+
+- [CKEditor 5](https://www.npmjs.com/package/ckeditor5)
+
+Install it using npm:
+
+```bash
+npm install --save ckeditor5
+```
+
+For version 1, the FullScreen plugin requires CKEditor 5 Core and CKEditor 5 UI as dependencies.
 
 - [CKEditor 5 Core](https://www.npmjs.com/package/@ckeditor/ckeditor5-core)
 - [CKEditor 5 UI](https://www.npmjs.com/package/@ckeditor/ckeditor5-ui)

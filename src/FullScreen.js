@@ -1,7 +1,6 @@
 //Pikulin.PW FullScreen Plugin – https://github.com/pikulinpw/ckeditor5-fullscreen
 
-import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
-import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
+import { Plugin, ButtonView } from 'ckeditor5';
 
 const pikulinpw_ckeditor5_fullscreen = {
     'getFullscreenElement': (element) => {

@@ -1,8 +1,9 @@
 {
   "name": "@pikulinpw/ckeditor5-fullscreen",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Maximize your CKEditor 5 editing space with the FullScreen plugin. Offering a seamless way to expand the editor to full screen, it ensures an uninterrupted and expansive writing canvas.",
   "main": "src/FullScreen.js",
+  "types": "src/FullScreen.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -26,11 +27,6 @@
   },
   "homepage": "https://github.com/pikulinpw/ckeditor5-fullscreen#readme",
   "dependencies": {
-    "@ckeditor/ckeditor5-core": ">=27.1.0",
-    "@ckeditor/ckeditor5-ui": ">=27.1.0"
-  },
-  "peerDependencies": {
-    "@ckeditor/ckeditor5-core": ">=27.1.0",
-    "@ckeditor/ckeditor5-ui": ">=27.1.0"
+    "ckeditor5": ">=42.0.0"
   }
 }
